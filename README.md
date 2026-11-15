@@ -45,14 +45,10 @@ the biological processes and pathways affected.
 - Some top hits (e.g. PCDH11Y, a Y-linked gene; NPIPA7/NPIPB6, multi-copy
   genes) may reflect sample sex/donor differences or multi-mapping rather than
   ADAR1 biology; interpret with caution.
-- Findings are descriptive; no experimental validation.
-
-## Reproducibility
-- R version and packages: see `sessionInfo.txt`
-- Run: `Rscript scripts/01_deseq2_enrichment.R`
+- Findings are descriptive therefore no experimental validation.
 
 ## Tools
 R, DESeq2, EnhancedVolcano, clusterProfiler, pheatmap/ggplot2
 
 ## Author
-Moses Mwangi Muiruri (Mozey) — Biotechnology, Technical University of Kenya
+Moses Mwangi Muiruri, Biotechnology, Technical University of Kenya

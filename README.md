@@ -53,13 +53,11 @@ Functional analysis used clusterProfiler with human annotations
 
 ### Quality control
 Principal component analysis showed that PC1 explained 36% of variance and PC2
-explained 19%, with samples separating by treatment. [Add one line on the
-p-value distribution and MA plot, e.g. whether the p-value histogram shows an
-enrichment of low p-values.]
+explained 19%, with samples separating by treatment.
 
 ### Differential expression
 The most significant genes included UGT2B17, UGT2B11, AZGP1, DDC, OPRK1, DOC2A,
-GRB10 and NDUFB9. [Add the number of significantly up and downregulated genes.]
+GRB10 and NDUFB9.
 
 ### Functional enrichment
 - **GO Biological Process (upregulated in siADAR1):** regulation of hormone

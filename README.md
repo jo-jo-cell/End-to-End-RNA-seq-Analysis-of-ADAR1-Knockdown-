@@ -17,7 +17,7 @@ To characterise the transcriptional changes that follow ADAR1 knockdown in LNCaP
 cells and identify the biological processes and pathways affected.
 
 ## Data source
-- Public RNA-seq dataset: [GEO accession], SRA runs SRR38030412 to SRR38030432 (n = 6)
+- Public RNA-seq dataset: GSE327582, SRA runs SRR38030412, SRR38030416, SRR38030420, SRR38030424, SRR38030428 and SRR38030432 (n = 6)
 - Original study: [citation]
 - Design: three Scramble control samples and three siADAR1 samples
 
@@ -72,11 +72,5 @@ notable given the role of lipid and cholesterol metabolism in that process.
 ## Limitations
 - Small sample size (n = 3 per group). The findings are descriptive and have not
   been experimentally validated.
-- [State ADAR1 knockdown efficiency in these data.]
-- No strong interferon or innate immune signature was observed, which may reflect
-  cell-line context.
-- [Y-linked and multi-copy genes (e.g. PCDH11Y, NPIPA7, NPIPB6) appear among top
-  hits. State the outcome of your per-sample check.]
-
 ## Author
-Moses Mwangi Muiruri (Mozey), Biotechnology, Technical University of Kenya
+Moses Mwangi Muiruri

@@ -1,54 +1,82 @@
-# End-to-End-RNA-seq-Analysis-of-ADAR1-Knockdown
-Transcriptomic re-analysis of a public RNA-seq dataset (n = 6) comparing ADAR1 knockdown to scrambled control. Covers QC, DESeq2 differential expression, volcano and heatmap visualisation, and GO/GSEA/KEGG functional enrichment.
+# Transcriptomic re-analysis of ADAR1 knockdown in LNCaP prostate cancer cells
+
+An RNA-seq re-analysis comparing ADAR1 knockdown (siADAR1) with scrambled siRNA
+control in LNCaP cells, covering quality control, differential expression, and
+GO, GSEA and KEGG functional enrichment.
+
+## Background
+ADAR1 is an RNA-editing enzyme that converts adenosine to inosine in
+double-stranded RNA. This editing helps cells distinguish their own RNA from
+viral RNA and limits innate immune sensing of endogenous transcripts. ADAR1 is
+also implicated in several cancers, including prostate cancer. LNCaP is an
+androgen-sensitive prostate cancer cell line, which makes it a useful model for
+asking how ADAR1 depletion affects hormone-responsive transcriptional programmes.
 
 ## Aim
-To characterise transcriptional changes following ADAR1 depletion and identify
-the biological processes and pathways affected.
+To characterise the transcriptional changes that follow ADAR1 knockdown in LNCaP
+cells and identify the biological processes and pathways affected.
 
-## Workflow
-1. Count matrix import and low-count filtering (14,752 genes tested)
-2. Differential expression with **DESeq2** (design: ~ treatment), LFC shrinkage
-3. QC: PCA, p-value histogram, MA plot
-4. Visualisation: volcano plot (**EnhancedVolcano**), heatmap of top DEGs (VST, row z-score)
-5. Functional analysis with **clusterProfiler**:
-   - GO BP over-representation of upregulated genes
-   - GO BP GSEA (gseGO) on ranked genes
-   - KEGG over-representation of significant DEGs
+## Data source
+- Public RNA-seq dataset: [GEO accession], SRA runs SRR38030412 to SRR38030432 (n = 6)
+- Original study: [citation]
+- Design: three Scramble control samples and three siADAR1 samples
 
-## Key results
-- **QC:** PC1 (36%) and PC2 (19%) show clear structure between conditions.
-- **Top DEGs:** include UGT2B17, UGT2B11, AZGP1, DDC, OPRK1, DOC2A, GRB10, NDUFB9.
-- **GO (up in siADAR1):** regulation of hormone levels, axonogenesis, estrogen metabolic process.
-- **GSEA GO BP:**
-  - Suppressed: myoblast/cell–cell fusion, myotube differentiation, oxidative
-    phosphorylation, aerobic respiration, cytoplasmic translation, striated muscle contraction
-  - Activated: ferroptosis and its regulation, endosomal transport, cholesterol
-    biosynthesis, protein dephosphorylation
-- **KEGG:** ascorbate/aldarate metabolism, retinol metabolism, bile secretion,
-  pentose/glucuronate interconversions (largely driven by UGT family genes),
-  dilated cardiomyopathy.
+## Methods
+Reads were quantified to gene-level counts ([aligner/quantifier and version]).
+Low-count genes were filtered, leaving 14,752 genes for testing. Differential
+expression was assessed with DESeq2 ([version]) using treatment as the design
+factor, with log fold-change shrinkage applied for visualisation. Quality control
+comprised principal component analysis, a p-value distribution check and an MA
+plot. Results were visualised with a volcano plot (EnhancedVolcano) and a heatmap
+of top differentially expressed genes (variance-stabilised counts, row z-scores).
+Functional analysis used clusterProfiler ([version]): Gene Ontology Biological
+Process over-representation of upregulated genes, GO Biological Process gene set
+enrichment analysis (GSEA) on ranked genes, and KEGG over-representation of
+significant genes. Significance was defined as adjusted p-value < [0.05] and
+|log2 fold change| > [value].
 
-## Figures
-| | |
-|---|---|
-| PCA | ![](results/figures/pca.png) |
-| MA plot | ![](results/figures/ma_plot.png) |
-| P-value distribution | ![](results/figures/pvalue_hist.png) |
-| Volcano | ![](results/figures/volcano.png) |
-| Top DEG heatmap | ![](results/figures/heatmap.png) |
-| GO BP (ORA) | ![](results/figures/go_bp_up.png) |
-| GSEA GO BP | ![](results/figures/gsea_gobp.png) |
-| KEGG | ![](results/figures/kegg.png) |
+## Results
+
+### Quality control
+Principal component analysis showed that PC1 explained 36% of variance and PC2
+explained 19%, with samples separating by treatment. [Add one line on the
+p-value distribution and MA plot, e.g. whether the p-value histogram shows an
+enrichment of low p-values.]
+
+### Differential expression
+The most significant genes included UGT2B17, UGT2B11, AZGP1, DDC, OPRK1, DOC2A,
+GRB10 and NDUFB9. [Add the number of significantly up and downregulated genes.]
+
+### Functional enrichment
+- **GO Biological Process (upregulated in siADAR1):** regulation of hormone
+  levels, axonogenesis and estrogen metabolic process.
+- **GSEA, suppressed:** myoblast and cell-cell fusion, myotube differentiation,
+  oxidative phosphorylation, aerobic respiration, cytoplasmic translation and
+  striated muscle contraction.
+- **GSEA, activated:** ferroptosis and its regulation, endosomal transport,
+  cholesterol biosynthesis and protein dephosphorylation.
+- **KEGG:** ascorbate and aldarate metabolism, retinol metabolism, bile
+  secretion, pentose and glucuronate interconversions, and dilated
+  cardiomyopathy.
+
+## Interpretation
+Several of the top genes (UGT2B15, UGT2B17, UGT2B11) encode enzymes that
+glucuronidate androgens, which is consistent with the enrichment of hormone and
+steroid metabolism terms in an androgen-sensitive cell line. This suggests, as a
+hypothesis, that ADAR1 loss may alter steroid handling in LNCaP cells. The
+suppression of oxidative phosphorylation, aerobic respiration and translation
+terms is a second theme that may point to a reduction in cellular metabolic and
+biosynthetic activity. The activation of ferroptosis-related terms is also
+notable given the role of lipid and cholesterol metabolism in that process.
 
 ## Limitations
-- Small sample size (n = 3 per group).
-- Some top hits (e.g. PCDH11Y, a Y-linked gene; NPIPA7/NPIPB6, multi-copy
-  genes) may reflect sample sex/donor differences or multi-mapping rather than
-  ADAR1 biology; interpret with caution.
-- Findings are descriptive therefore no experimental validation.
-
-## Tools
-R, DESeq2, EnhancedVolcano, clusterProfiler, pheatmap/ggplot2
+- Small sample size (n = 3 per group). The findings are descriptive and have not
+  been experimentally validated.
+- [State ADAR1 knockdown efficiency in these data.]
+- No strong interferon or innate immune signature was observed, which may reflect
+  cell-line context.
+- [Y-linked and multi-copy genes (e.g. PCDH11Y, NPIPA7, NPIPB6) appear among top
+  hits. State the outcome of your per-sample check.]
 
 ## Author
-Moses Mwangi Muiruri, Biotechnology, Technical University of Kenya
+Moses Mwangi Muiruri (Mozey), Biotechnology, Technical University of Kenya

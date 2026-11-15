@@ -29,7 +29,7 @@ several rows mapped to the same gene symbol, the row with the highest total
 count was retained. Genes were kept if they had at least 10 counts in at least
 three samples, leaving 14,752 genes for testing.
 
-Differential expression was performed with DESeq2 ([version]) using treatment as
+Differential expression was performed with DESeq2 using treatment as
 the design factor (Scramble as the reference level) and Wald tests with
 alpha = 0.05. Log fold changes were shrunk with the ashr method for the MA plot
 and volcano plot. Genes were called significant at adjusted p < 0.05 and
@@ -39,7 +39,7 @@ plot uses display thresholds (adjusted p < 1e-50, |log2FC| > 2.5) only to
 highlight the strongest genes, and the heatmap shows the top 20 genes in each
 direction by adjusted p-value (VST counts, row z-scores).
 
-Functional analysis used clusterProfiler ([version]) with human annotations
+Functional analysis used clusterProfiler with human annotations
 (org.Hs.eg.db):
 - GO Biological Process over-representation of genes upregulated in siADAR1 and
   in Scramble separately, against all tested genes as background (BH-adjusted,

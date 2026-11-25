@@ -24,11 +24,7 @@ Kalogera, S., Detkiewicz, K., Verk, L. et al. ADAR1 is increased in prostate can
 
 ## Methods
 Gene-level count data for six samples (three Scramble, three siADAR1) were
-analysed in R. Numeric suffixes were stripped from gene identifiers, and where
-several rows mapped to the same gene symbol, the row with the highest total
-count was retained. Genes were kept if they had at least 10 counts in at least
-three samples, leaving 14,752 genes for testing.
-
+analysed in R. 
 Differential expression was performed with DESeq2 using treatment as
 the design factor (Scramble as the reference level) and Wald tests with
 alpha = 0.05. Log fold changes were shrunk with the ashr method for the MA plot

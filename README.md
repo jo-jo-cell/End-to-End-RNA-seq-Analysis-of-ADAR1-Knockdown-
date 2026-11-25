@@ -25,6 +25,7 @@ Kalogera, S., Detkiewicz, K., Verk, L. et al. ADAR1 is increased in prostate can
 ## Methods
 Gene-level count data for six samples (three Scramble, three siADAR1) were
 analysed in R. 
+Public RNA-seq data from LNCaP cells treated with siADAR1 or a scrambled siRNA control (six samples) were downloaded from the NCBI SRA using the SRA Toolkit and converted to FASTQ files with fasterq-dump. Read quality was assessed with FastQC and summarized with MultiQC, and adapters and low-quality bases were removed with fastp. Trimmed reads were aligned to the human reference genome (GRCh38) with HISAT2, and the alignments were converted to sorted, indexed BAM files with SAMtools.
 Differential expression was performed with DESeq2 using treatment as
 the design factor (Scramble as the reference level) and Wald tests with
 alpha = 0.05. Log fold changes were shrunk with the ashr method for the MA plot
